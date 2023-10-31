@@ -13,6 +13,8 @@ import LogIn from './LogIn';
 import SignUp from './SignUp';
 import AuthProviders from './Providers/AuthProviders';
 import Checkout from './Routes/Checkout';
+import BookService from './Routes/BookService';
+import Bookings from './Routes/Bookings';
 
 const router = createBrowserRouter([
   {
@@ -33,9 +35,18 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
+        path: '/book/:id',
+        element: <BookService></BookService>,
+        loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+      },
+      {
         path: `/checkout/:id`,
         element: <Checkout></Checkout>,
         loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+      },
+      {
+        path: 'bookings', 
+        element: <Bookings></Bookings>
       }
     ]
   },
