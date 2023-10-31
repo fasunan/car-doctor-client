@@ -15,6 +15,7 @@ import AuthProviders from './Providers/AuthProviders';
 import Checkout from './Routes/Checkout';
 import BookService from './Routes/BookService';
 import Bookings from './Routes/Bookings';
+import PrivateRoute from './Routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'bookings', 
-        element: <Bookings></Bookings>
+        element: <PrivateRoute>
+          <Bookings></Bookings>
+        </PrivateRoute>
       }
     ]
   },
