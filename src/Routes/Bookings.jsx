@@ -3,23 +3,27 @@ import { AuthContext } from "../Providers/AuthProviders";
 import BookingCard from "./BookingCard";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import useAxios from "../Hooks/useAxios";
+// import axios from "axios";
 
 const Bookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
+    const axiosSecure = useAxios();
     useEffect(() => {
+        axiosSecure.get(`/bookings?email=${user?.email}`)
+        .then(res=> setBookings(res.data))
 
-        axios.get(`http://localhost:5000/bookings?email=${user?.email}`, {withCredentials:true})
-        .then(res=>{
-            setBookings(res.data)
-        })
+        // axios.get(`http://localhost:5000/bookings?email=${user?.email}`, {withCredentials:true})
+        // .then(res=>{
+        //     setBookings(res.data)
+        // })
 
         // fetch(`http://localhost:5000/bookings?email=${user?.email}`)
         //     .then(res => res.json())
         //     .then(data => setBookings(data))
 
-    }, []);
+    }, [axiosSecure]);
 
     const handleDelete = id => {
         const proceed = confirm('Are You sure you want to delete');
