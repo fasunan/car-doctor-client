@@ -18,10 +18,10 @@ const Navbar = () => {
                 {" "}
                 <NavLink to={"/"}>Home</NavLink>
             </li>
-            <li>
+            {/* <li>
                 {" "}
                 <NavLink to={"/about"}>About</NavLink>
-            </li>
+            </li> */}
 
             <li>
                 {" "}
@@ -34,10 +34,10 @@ const Navbar = () => {
             : <li> <Link to="/login">Login</Link> </li>
         }
 
-            <li>
+            {/* <li>
             {" "}
             <NavLink to={"users"}>Users</NavLink>
-          </li>
+          </li> */}
         </>
     );
     return (
